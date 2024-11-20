@@ -170,7 +170,7 @@ if ($temperatura > 25 && !$chuva) {
 }
 ```
 
----
+
 
 ### Resumo dos principais conceitos:
 
@@ -180,3 +180,119 @@ if ($temperatura > 25 && !$chuva) {
 - **Operadores Lógicos**: `&&` (AND), `||` (OR), `!` (NOT) ajudam a combinar várias condições.
 
 Esses conceitos permitem que você escreva código que toma decisões automaticamente com base nas condições que você define!
+
+</br>
+
+
+
+<h2>Arrays</h2> 
+
+Um **array** em PHP é usado para armazenar múltiplos valores em uma única variável, sendo útil quando você precisa trabalhar com coleções de dados. Você pode criar arrays para listas simples, relacionar chaves e valores ou até mesmo criar tabelas (arrays multidimensionais).  
+
+---
+
+### **1. Como Criar um Array**
+
+#### Array Simples (Indexado)  
+É a lista mais básica, onde cada elemento tem um índice numérico automático.  
+```php
+$frutas = ["maçã", "banana", "laranja"]; // Moderno
+```
+Serve para armazenar valores ordenados, como uma lista de itens.
+
+---
+
+### **2. Tipos de Arrays**  
+
+#### **a) Array Indexado**  
+Útil para listas simples com índices automáticos.  
+```php
+$frutas = ["maçã", "banana", "laranja"];
+echo $frutas[0]; // Exibe "maçã"
+```
+
+#### **b) Array Associativo**  
+Cada valor é associado a uma chave nomeada.  
+Serve para organizar informações como pares de chave-valor.  
+```php
+$idades = ["João" => 25, "Maria" => 30];
+echo $idades["Maria"]; // Exibe "30"
+```
+
+#### **c) Array Multidimensional**  
+Um array dentro de outro array.  
+Usado para organizar dados complexos, como uma tabela.  
+```php
+$produtos = [
+    ["nome" => "Notebook", "preco" => 2500],
+    ["nome" => "Mouse", "preco" => 100]
+];
+echo $produtos[0]["nome"]; // Exibe "Notebook"
+```
+
+---
+
+### **3. Operações Básicas**
+
+- **Adicionar elementos ao array:**
+  ```php
+  $frutas[] = "uva"; // Adiciona "uva" no final
+  ```
+
+- **Remover elementos:**
+  ```php
+  unset($frutas[1]); // Remove "banana"
+  ```
+
+- **Contar elementos no array:**
+  ```php
+  echo count($frutas); // Exibe o número de elementos
+  ```
+
+---
+
+### **4. Como Percorrer um Array**
+
+#### Com `foreach` (para listas simples):  
+```php
+foreach ($frutas as $fruta) {
+    echo $fruta . "<br>";
+}
+```
+
+#### Com `foreach` (para chaves e valores):  
+```php
+foreach ($idades as $nome => $idade) {
+    echo "$nome tem $idade anos.<br>";
+}
+```
+
+---
+
+### **5. Funções Úteis**
+
+#### Ordenar valores no array:  
+Serve para reorganizar os dados.  
+```php
+sort($frutas); // Ordena em ordem crescente
+rsort($frutas); // Ordena em ordem decrescente
+```
+
+#### Verificar se um valor está no array:  
+Útil para buscas.  
+```php
+if (in_array("banana", $frutas)) {
+    echo "Banana está na lista!";
+}
+```
+
+#### Obter somente as chaves ou valores de um array associativo:  
+```php
+$chaves = array_keys($idades);
+$valores = array_values($idades);
+```  
+
+---
+
+**Dica**: Arrays são versáteis e permitem organizar dados para manipulações rápidas e eficientes em PHP!
+
