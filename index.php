@@ -9,9 +9,18 @@
     <h1>
         <?php
             echo "Aula PHP da Rocketseat";
-            
-                
+
         ?>
+<h1>
+    <?php
+        $variavel= "Variável";
+
+        echo $variavel;
+    ?>
+
+    
+</h1>
+
         <p>
             <?php
             echo "teste de parágrafo";
