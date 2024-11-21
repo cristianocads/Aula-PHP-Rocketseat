@@ -26,6 +26,24 @@
             </p>
         </h1>
     </section> 
+    <?php  //Conceito de arrays
+        $projetos = [ //listas começam na posição 0. para modificar, substitui por um "apelido"
+            "titulo" => "Meu Portifólio",
+            "tarefa" => "lista de Tarefas",
+            "controle" => "Controle de Leitura de Livros"
+        ];
+
+    ?>
+
+    <ul>
+        <?php foreach ($projetos as $projeto) {
+            echo "<li>" . $projeto . "</li>"; //duas formas de concatenar
+            echo "<li>{$projeto['titulo']}</li>"; // na hora que quizer chamar uma posição específica, coloca entre [] a posição, no caso colocaremos o apelido.
+
+        }
+        ?>
+    </ul>
+
     <section>
         <?php // aula condicionais e booleanos
             $nome = "João";
@@ -46,7 +64,7 @@
                 <div
                     <?php if((2024 - $ano) > 2): // condicional if else
                     ?>
-                        style = "color: blue;"
+                        style = "color: blue;" 
                     
                     <?php endif; ?>
                         

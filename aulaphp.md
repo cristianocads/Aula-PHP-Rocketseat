@@ -1,15 +1,156 @@
 <h2>Variáveis</h2>
-São estruturas salvas dentro do arquivo. Para sua utilização no php, inicia-se com $, exemplo:
 
-$nomedavariavel = "variavel entre aspas";
 
-para utilizá-la, basta replicar o comando $nomedavariavel, exemplo:
+As variáveis são usadas para armazenar dados que podem ser manipulados ao longo do código. Em PHP, as variáveis começam com o símbolo `$`, seguido pelo nome da variável.
 
-echo $nomedavariavel;
 
-** Para concatenar, utiliza-se o ponto "."
 
-abreviação de echo (< ?=$variavel?>)
+### **1. Definindo uma Variável**
+Para criar uma variável, basta atribuir um valor a ela com o operador de atribuição `=`.
+
+**Sintaxe básica:**
+```php
+$nomeDaVariavel = valor;
+```
+
+**Exemplo:**
+```php
+$nome = "João";
+$idade = 25;
+
+echo $nome;   // Exibe: João
+echo $idade;  // Exibe: 25
+```
+
+---
+
+### **2. Tipos de Dados em PHP**
+PHP é uma linguagem de tipagem dinâmica, ou seja, você não precisa declarar o tipo de dado da variável explicitamente. O PHP determina automaticamente o tipo com base no valor atribuído.
+
+#### Tipos comuns de dados:
+- **Inteiros**: Números inteiros.
+- **Ponto flutuante**: Números com casas decimais.
+- **Strings**: Sequência de caracteres.
+- **Booleanos**: Valores `true` ou `false`.
+- **Arrays**: Coleção de valores.
+- **Objetos**: Instâncias de uma classe.
+
+**Exemplo:**
+```php
+$numeroInteiro = 10;        // Tipo inteiro
+$numeroDecimal = 10.5;      // Tipo ponto flutuante
+$texto = "Olá, Mundo!";     // Tipo string
+$booleano = true;           // Tipo booleano
+```
+
+---
+
+### **3. Concatenando Strings**
+Em PHP, você pode concatenar strings utilizando o operador `.` (ponto).
+
+**Exemplo:**
+```php
+$nome = "Maria";
+$mensagem = "Olá, " . $nome . "!";
+echo $mensagem;  // Exibe: Olá, Maria!
+```
+
+Ou você pode usar as chaves `{}` dentro de uma string com aspas duplas para inserir uma variável diretamente na string.
+
+**Exemplo:**
+```php
+$nome = "João";
+echo "Olá, {$nome}!";  // Exibe: Olá, João!
+```
+
+---
+
+### **4. Variáveis Globais e Locais**
+- **Variáveis locais**: São definidas dentro de uma função e só podem ser acessadas dentro dela.
+- **Variáveis globais**: São definidas fora de qualquer função e podem ser acessadas de qualquer lugar no código.
+
+**Exemplo de variável local:**
+```php
+function minhaFuncao() {
+    $nomeLocal = "João";  // Variável local
+    echo $nomeLocal;
+}
+
+minhaFuncao();  // Exibe: João
+// echo $nomeLocal; // Erro! Variável local não está acessível fora da função
+```
+
+**Exemplo de variável global:**
+```php
+$nomeGlobal = "Ana";  // Variável global
+
+function outraFuncao() {
+    global $nomeGlobal;  // Usando a variável global dentro da função
+    echo $nomeGlobal;
+}
+
+outraFuncao();  // Exibe: Ana
+```
+
+---
+
+### **5. Variáveis Superglobais**
+PHP tem algumas variáveis predefinidas chamadas **superglobais**, que podem ser acessadas de qualquer lugar no código, dentro ou fora de funções.
+
+- **$_GET**: Variáveis passadas pela URL (método GET).
+- **$_POST**: Variáveis enviadas pelo formulário (método POST).
+- **$_SESSION**: Armazena informações durante a sessão.
+- **$_COOKIE**: Armazena dados em cookies.
+- **$_FILES**: Informações sobre arquivos carregados.
+- **$_SERVER**: Informações sobre o servidor e cabeçalhos HTTP.
+- **$_ENV**: Variáveis de ambiente.
+
+**Exemplo com $_GET:**
+```php
+// URL: http://localhost/index.php?nome=Maria
+echo $_GET['nome'];  // Exibe: Maria
+```
+
+---
+
+### **6. Alterando o Valor de uma Variável**
+Você pode alterar o valor de uma variável a qualquer momento no código.
+
+**Exemplo:**
+```php
+$numero = 5;
+echo $numero;  // Exibe: 5
+
+$numero = 10;
+echo $numero;  // Exibe: 10
+```
+
+---
+
+### **7. Variáveis de Referência**
+Quando você passa uma variável por referência, ao alterar o valor de uma delas, a outra também será alterada.
+
+**Exemplo:**
+```php
+$valor1 = 10;
+$valor2 = &$valor1;  // Passando por referência
+
+$valor2 = 20;
+echo $valor1;  // Exibe: 20 (ambas as variáveis apontam para o mesmo valor)
+```
+
+---
+
+### **Resumo**
+- **Variáveis** armazenam dados e são definidas com o símbolo `$`.
+- O tipo da variável é determinado pelo valor atribuído.
+- **Variáveis globais** podem ser acessadas de qualquer lugar, e **variáveis locais** são limitadas à função onde são definidas.
+- Você pode usar **variáveis superglobais** para acessar informações do formulário, da URL, e mais.
+
+**abreviação de echo (< ?=$variavel?>)**
+</br>
+</br>
+</br>
 
 <h2>Condicionais e Booleanos</h2>
 No PHP, **condicionais** e **booleanos** são usados para tomar decisões no código com base em condições específicas. Abaixo, explico como usá-los de forma simples:
@@ -295,4 +436,118 @@ $valores = array_values($idades);
 ---
 
 **Dica**: Arrays são versáteis e permitem organizar dados para manipulações rápidas e eficientes em PHP!
+
+<br>
+
+
+
+
+<h2>Funções em PHP</h2> 
+
+As funções em PHP são blocos de código reutilizáveis que realizam tarefas específicas. Elas ajudam a organizar e simplificar o código.
+
+
+
+### **1. Criando uma Função**
+Para criar uma função, usamos a palavra-chave `function`. 
+
+**Sintaxe básica:**
+```php
+function nomeDaFuncao() {
+    // Código a ser executado
+}
+```
+
+**Exemplo:**
+```php
+function digaOla() {
+    echo "Olá, mundo!";
+}
+
+digaOla(); // Chama a função e exibe: Olá, mundo!
+```
+
+---
+
+### **2. Funções com Parâmetros**
+Os parâmetros permitem passar valores para a função, tornando-a mais flexível.
+
+**Exemplo:**
+```php
+function saudacao($nome) {
+    echo "Olá, $nome!";
+}
+
+saudacao("Maria"); // Exibe: Olá, Maria!
+saudacao("João");  // Exibe: Olá, João!
+```
+
+---
+
+### **3. Funções com Valor de Retorno**
+As funções podem retornar um valor usando a palavra-chave `return`.
+
+**Exemplo:**
+```php
+function soma($a, $b) {
+    return $a + $b;
+}
+
+$resultado = soma(5, 3);
+echo $resultado; // Exibe: 8
+```
+
+---
+
+### **4. Parâmetros com Valor Padrão**
+Podemos definir valores padrão para os parâmetros.
+
+**Exemplo:**
+```php
+function bemVindo($nome = "Visitante") {
+    echo "Bem-vindo, $nome!";
+}
+
+bemVindo();           // Exibe: Bem-vindo, Visitante!
+bemVindo("Ana");      // Exibe: Bem-vindo, Ana!
+```
+
+---
+
+### **5. Funções Anônimas**
+São funções sem nome que podem ser atribuídas a variáveis.
+
+**Exemplo:**
+```php
+$minhaFuncao = function($nome) {
+    return "Olá, $nome!";
+};
+
+echo $minhaFuncao("Pedro"); // Exibe: Olá, Pedro!
+```
+
+---
+
+### **6. Funções Recursivas**
+Funções que chamam a si mesmas.
+
+**Exemplo:**
+```php
+function fatorial($numero) {
+    if ($numero == 1) {
+        return 1;
+    }
+    return $numero * fatorial($numero - 1);
+}
+
+echo fatorial(5); // Exibe: 120
+```
+
+---
+
+### **Resumo**
+- **Funções ajudam a evitar repetição de código.**
+- **Podem receber parâmetros para trabalhar com dados.**
+- **Podem retornar valores para reutilização.**
+- **Flexíveis e fáceis de implementar.**
 
