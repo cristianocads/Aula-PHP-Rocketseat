@@ -550,4 +550,6 @@ echo fatorial(5); // Exibe: 120
 - **Podem receber parâmetros para trabalhar com dados.**
 - **Podem retornar valores para reutilização.**
 - **Flexíveis e fáceis de implementar.**
-
+</br>
+</br>
+</br>
