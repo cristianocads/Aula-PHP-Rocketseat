@@ -38,7 +38,7 @@
     <ul>
         <?php foreach ($projetos as $projeto) {
             echo "<li>" . $projeto . "</li>"; //duas formas de concatenar
-            echo "<li>{$projeto['titulo']}</li>"; // na hora que quizer chamar uma posição específica, coloca entre [] a posição, no caso colocaremos o apelido.
+            // echo "<li>{$projeto['titulo']}</li>"; // na hora que quizer chamar uma posição específica, coloca entre [] a posição, no caso colocaremos o apelido.
 
         }
         ?>
@@ -58,6 +58,14 @@
             $dataDoProjeto = "11-10-2024";
             $descricao = "Meu primeiro portifólio - Escrito em PHP e HTML";
             // Forma encurtada do 'echo' abaixo no div
+
+            function bemVindo($nome = "Visitante") {
+                echo "Bem-vindo, $nome!";
+            }
+            
+            bemVindo();           // Exibe: Bem-vindo, Visitante!
+            bemVindo("Ana");      // Exibe: Bem-vindo, Ana!
+
         ?>
         <div>
             <div>
