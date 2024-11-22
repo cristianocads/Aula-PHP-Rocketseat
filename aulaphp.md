@@ -553,3 +553,161 @@ echo fatorial(5); // Exibe: 120
 </br>
 </br>
 </br>
+<h2>Filtros</h2>
+
+Os **filtros em PHP** são usados para validar e sanitizar dados de entrada, como os fornecidos por usuários através de formulários. Eles ajudam a garantir a segurança e integridade dos dados antes de processá-los ou armazená-los, protegendo contra problemas como **injeção de código** ou **dados inválidos**.
+
+### Por que usar filtros?
+- **Validação**: Garante que os dados sejam do tipo ou formato esperado (e.g., e-mail, URL, número inteiro).
+- **Sanitização**: Remove caracteres indesejados para evitar vulnerabilidades de segurança.
+
+PHP oferece funções nativas para aplicar filtros, através de:
+- `filter_var()` (para filtrar uma única variável).
+- `filter_input()` (para filtrar dados de entrada como `$_GET`, `$_POST`, etc.).
+- `filter_var_array()` ou `filter_input_array()` (para filtrar múltiplos valores).
+
+---
+
+### **Função `filter_var()`**
+A função `filter_var()` é usada para aplicar filtros diretamente a uma variável.
+
+#### **Sintaxe:**
+```php
+filter_var(valor, filtro, opções);
+```
+
+#### **Exemplo 1: Validar um e-mail**
+```php
+$email = "exemplo@dominio.com";
+if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    echo "E-mail válido!";
+} else {
+    echo "E-mail inválido.";
+}
+```
+
+#### **Exemplo 2: Sanitizar um número inteiro**
+```php
+$numero = "123abc";
+$numeroSanitizado = filter_var($numero, FILTER_SANITIZE_NUMBER_INT);
+echo $numeroSanitizado; // Saída: 123
+```
+
+---
+
+### **Função `filter_input()`**
+Essa função valida ou sanitiza dados diretamente das superglobais como `$_GET`, `$_POST`, etc.
+
+#### **Sintaxe:**
+```php
+filter_input(tipo_de_entrada, nome_variavel, filtro, opções);
+```
+
+- `tipo_de_entrada`: Tipo de entrada (e.g., `INPUT_GET`, `INPUT_POST`, `INPUT_COOKIE`, etc.).
+- `nome_variavel`: Nome da variável na entrada.
+- `filtro`: Tipo de filtro a ser aplicado.
+
+#### **Exemplo: Validar um ID enviado via GET**
+```php
+$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+if ($id) {
+    echo "ID válido: $id";
+} else {
+    echo "ID inválido!";
+}
+```
+
+---
+
+### **Função `filter_var_array()`**
+Essa função aplica filtros a um array de dados.
+
+#### **Exemplo: Validar e sanitizar múltiplos campos**
+```php
+$dados = [
+    "nome" => "João <b>Silva</b>",
+    "idade" => "30 anos",
+    "email" => "email_invalido"
+];
+
+$filtros = [
+    "nome" => FILTER_SANITIZE_STRING,
+    "idade" => FILTER_SANITIZE_NUMBER_INT,
+    "email" => FILTER_VALIDATE_EMAIL
+];
+
+$resultado = filter_var_array($dados, $filtros);
+print_r($resultado);
+/* Saída:
+Array
+(
+    [nome] => João Silva
+    [idade] => 30
+    [email] => 
+)
+*/
+```
+
+---
+
+### Tipos de Filtros
+#### **Validação (`FILTER_VALIDATE_*`)**
+- **`FILTER_VALIDATE_EMAIL`**: Valida um e-mail.
+- **`FILTER_VALIDATE_INT`**: Valida um número inteiro.
+- **`FILTER_VALIDATE_FLOAT`**: Valida um número decimal.
+- **`FILTER_VALIDATE_URL`**: Valida uma URL.
+- **`FILTER_VALIDATE_IP`**: Valida um endereço IP.
+
+#### **Sanitização (`FILTER_SANITIZE_*`)**
+- **`FILTER_SANITIZE_STRING`**: Remove tags HTML e caracteres especiais.
+- **`FILTER_SANITIZE_EMAIL`**: Remove caracteres inválidos para um e-mail.
+- **`FILTER_SANITIZE_URL`**: Remove caracteres inválidos para uma URL.
+- **`FILTER_SANITIZE_NUMBER_INT`**: Remove tudo, exceto números inteiros.
+- **`FILTER_SANITIZE_NUMBER_FLOAT`**: Remove tudo, exceto números decimais.
+
+---
+
+### Exemplos Práticos
+
+#### **1. Sanitizar entrada do usuário**
+```php
+$nome = "<h1>Maria</h1>";
+$nomeLimpo = filter_var($nome, FILTER_SANITIZE_STRING);
+echo $nomeLimpo; // Saída: Maria
+```
+
+#### **2. Validar e sanitizar uma URL**
+```php
+$url = "https://exemplo.com/teste";
+if (filter_var($url, FILTER_VALIDATE_URL)) {
+    echo "URL válida!";
+} else {
+    echo "URL inválida!";
+}
+```
+
+#### **3. Filtrar dados enviados via POST**
+```php
+$dados = [
+    "email" => filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL),
+    "idade" => filter_input(INPUT_POST, 'idade', FILTER_SANITIZE_NUMBER_INT)
+];
+
+if ($dados['email'] && $dados['idade']) {
+    echo "Dados válidos!";
+} else {
+    echo "Dados inválidos!";
+}
+```
+
+---
+
+### Resumo
+- **Filtros** são essenciais para lidar com dados de forma segura em PHP.
+- Use **validação** para confirmar o tipo/forma do dado.
+- Use **sanitização** para remover dados indesejados ou inseguros.
+- Funções como `filter_var()` e `filter_input()` simplificam essas operações.
+
+</br>
+</br>
+</br>
