@@ -3,6 +3,7 @@
 
 Para acessar as definições dos fundamentos básicos, acesse [aulaphp.md](aulaphp.md)
 
+E as aplicações em [Basico/basico.php](Basico/basico.php) ou [Geral/index.php](/geral/index.php)
 
 
 #
