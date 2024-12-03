@@ -711,3 +711,79 @@ if ($dados['email'] && $dados['idade']) {
 </br>
 </br>
 </br>
+
+
+
+<h2> Sequências de Escape no PHP</h2>
+Em PHP, sequências de escape são usadas em strings para representar caracteres especiais ou realizar ações específicas. Aqui está uma lista das sequências de escape mais comuns:
+<br>
+<br>
+
+| Sequência | Descrição                          |
+|-----------|------------------------------------|
+| `\n`      | Nova linha (LF)                   |
+| `\r`      | Retorno de carro (CR)             |
+| `\t`      | Tabulação horizontal (tab)        |
+| `\v`      | Tabulação vertical                |
+| `\e`      | Escape                            |
+| `\f`      | Alimentação de formulário         |
+| `\\`      | Barra invertida (`\`)            |
+| `\"`      | Aspas duplas (`"`) dentro de aspas duplas |
+| `\'`      | Aspas simples (`'`) dentro de aspas simples |
+| `\$`      | Caractere do cifrão (`$`) dentro de strings interpretadas |
+| `\0`      | Byte NUL (ASCII 0)                |
+| `\xhh`    | Representação hexadecimal de um caractere (e.g., `\x41` para "A") |
+| `\uhhhh`  | Representação Unicode (e.g., `\u00A9` para o símbolo de copyright) |
+
+### Exemplos no PHP
+#### Usando Strings com Escape
+```php
+<?php
+echo "Nova linha:\n";           // Insere uma nova linha
+echo "Tabulação:\tTexto aqui";  // Insere um tab
+echo "Aspas duplas: \"PHP\"";   // Escapa aspas duplas
+?>
+```
+
+**Saída:**
+```
+Nova linha:
+Tabulação:    Texto aqui
+Aspas duplas: "PHP"
+```
+
+#### Escapando Aspas Simples
+Se você usa aspas simples para delimitar strings, a única sequência necessária é `\'`:
+```php
+<?php
+echo 'I\'m learning PHP'; // Escapa o apóstrofo
+?>
+```
+
+**Saída:**
+```
+I'm learning PHP
+```
+
+#### Escapando Variáveis
+Para exibir um cifrão (`$`) sem interpretá-lo como variável:
+```php
+<?php
+echo "Preço: \$100"; // Exibe o símbolo de dólar
+?>
+```
+
+**Saída:**
+```
+Preço: $100
+```
+
+### Observação
+- **Strings com Aspas Simples (`'`)**: Não interpretam sequências de escape, exceto para `\'` e `\\`.
+- **Strings com Aspas Duplas (`"`)**: Interpretam sequências de escape e variáveis.
+
+Essas sequências são úteis para trabalhar com textos que contêm caracteres especiais ou que precisam de formatação específica.
+
+</br>
+</br>
+</br>
